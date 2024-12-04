@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Jan Pearce",
+    "office": "Room 101",
+    "building": "CMIT Building",
+    "department": "Computer Science",
+    "coordinates": [-84.2886, 37.5725],
+    "email": "pearcej@berea.edu",
+    "office_hours": "Mon/Wed 10:00-12:00, Fri 14:00-16:00",
+    "profile_picture": "https://notionalmachines.github.io/assets/images/author/jan.jpeg"
+  },
+
+  {
+    "id": 2,
+    "name": "Prof. John Doe",
+    "office": "Room 202",
+    "building": "Arts Center",
+    "department": "Literature",
+    "coordinates": [-84.2888889, 37.5733333],
+    "email": "john.doe@university.edu",
+    "office_hours": "Mon/Wed 10:00-12:00, Fri 14:00-16:00"
+  },
+  {
+    "id": 3,
+    "name": "Mr. Douglas Newell Jones",
+    "Office": "Room 203",
+    "building": "Draper Building",
+    "department": "History",
+    "coordinates": [ -84.2922, 37.5728 ],
+    "email": "jonesn@berea.edu",
+    "office_hours": "Mon/Wed 10:00-12:00, Fri 14:00-16:00"
+
+
+  }
+]

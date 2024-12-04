@@ -1,37 +1,111 @@
-#root {
+/* src/App.css */
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Navigation Overlay */
+.navigation-overlay {
+  background-color: white;
+  width: 300px;
+  overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .navigation-overlay {
+    width: 100%;
+    max-height: 30vh;
+  }
+}
+
+/* Map Container */
+.map-container {
+  flex: 1;
+  position: relative;
+}
+
+.map-container > div {
   position: absolute;
   top: 0;
-  right: 0;
   bottom: 0;
-  left: 0;
-}
-
-#map-container {
-  height: 100%;
   width: 100%;
-  /* temporarily set the background color so we can tell where the map container is positioned */
-  background-color: lightgrey;
 }
 
-.sidebar {
-  background-color: rgb(35 55 75 / 90%);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: monospace;
-  z-index: 1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 12px;
-  border-radius: 4px;
+/* Professor List */
+.professor-list {
+  padding: 16px;
 }
 
-.reset-button {
-  position: absolute;
-  top: 50px;
-  z-index: 1;
-  left: 12px;
-  padding: 4px 10px;
-  border-radius: 10px;
+.professor-list input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.professor-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.professor-list li {
+  padding: 8px;
   cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.professor-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.professor-list h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.professor-list li:last-child {
+  border-bottom: none;
+}
+
+/* Professor Details */
+.professor-details {
+  padding: 16px;
+}
+
+.professor-details h2 {
+  margin-top: 0;
+}
+
+.professor-details button {
+  margin-top: 16px;
+  padding: 8px 16px;
+}
+
+/* Mapbox GL JS Overrides */
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.professor-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
