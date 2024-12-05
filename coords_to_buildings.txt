@@ -1,0 +1,20 @@
+Searbury Center {
+    "coordinates": [-84.2903, 37.5742]
+}
+
+Presser Hall {
+    "coordinates": [-84.2920, 37.5700]
+}
+
+CMIT {
+    "coordinates": [-84.2906, 37.5725]
+}
+
+"Danforth Technology Building" {
+    "coordinates": [-84.2892, 37.5739]
+}
+
+MAC Building {
+    "coordinates": [-84.2889, 37.5744]
+}
+

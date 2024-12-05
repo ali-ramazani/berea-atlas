@@ -1,5 +1,4 @@
-// src/components/ProfessorList.js
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const ProfessorList = ({ professors, onProfessorSelect }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -9,7 +8,6 @@ const ProfessorList = ({ professors, onProfessorSelect }) => {
     professor.department.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Sort professors alphabetically by name
   const sortedProfessors = filteredProfessors.sort((a, b) =>
     a.name.localeCompare(b.name)
   );
@@ -24,12 +22,11 @@ const ProfessorList = ({ professors, onProfessorSelect }) => {
       />
       <ul>
         {sortedProfessors.map((professor) => (
-            <li key={professor.id} onClick={() => onProfessorSelect(professor)}>
-                {/*<img className="professor-photo" src={professor.photoURL}/>*/}
-                <strong>{professor.name}</strong> <br/>
-
-                {professor.department} - {professor.office}
-            </li>
+          <li key={professor.id} onClick={() => onProfessorSelect(professor)}>
+            <strong>{professor.name}</strong> <br />
+            {professor.department} - {professor.office} <br />
+            <em>{professor.building}</em>
+          </li>
         ))}
       </ul>
     </div>
