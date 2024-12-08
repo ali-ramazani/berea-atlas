@@ -20,6 +20,11 @@ function App() {
   return (
     <div className="app-container">
       <div className="navigation-overlay">
+        {/* Textual Header */}
+        <header className="app-header">
+          <h1 className="app-title">Berea Atlas</h1>
+        </header>
+
         {selectedProfessor ? (
           <div className="professor-details">
             <h2>{selectedProfessor.name}</h2>

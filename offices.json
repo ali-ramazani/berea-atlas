@@ -114,5 +114,15 @@
       "MUS 130A: Tue/Thur 12:00 – 1:00 p.m.",
       "MUS 131: Mon/Tue/Thur 5:00 – 6:10 p.m."
     ]
+  },
+  {"id":  9,
+    "name": "Dr. Nabila Rahman Biju",
+    "building":"Draper Hall",
+    "office": "Draper 118A",
+    "floor": 2,
+    "department": "Economics and Business",
+    "email": "bijun@berea.edu",
+    "profile_picture": "https://bereafaust.wpengine.com/wp-content/uploads/2023/08/waterfall.jpeg?w=384&q=75",
+    "office_hours": "Mon: 10:30 - 12:30 p.m., Tue: 12 - 3 p.m., Wed: 10:30 - 12:30 p.m., Thu: 12 - 3 p.m."
   }
 ]
