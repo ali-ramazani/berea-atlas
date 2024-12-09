@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Map from './components/Map';
 import ProfessorList from './components/ProfessorList';
-import professorsData from '../offices.json';
+import { supabase } from '../supabaseClient'; // Import the Supabase client
 import buildingCoordinates from '../buildings.json'; // Load JSON for building coordinates
 import 'mapbox-gl/dist/mapbox-gl.css';
+import UpdateProfessor from './components/UpdateProfessor.jsx'
 
 function App() {
+  const [professors, setProfessors] = useState([]);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
+
+  // Fetch professors from Supabase
+  useEffect(() => {
+    const fetchProfessors = async () => {
+      const { data, error } = await supabase.from('faculty').select('*');
+      if (error) {
+        console.error('Error fetching professors:', error.message);
+      } else {
+        setProfessors(data);
+      }
+    };
+
+    fetchProfessors();
+  }, []);
 
   const handleProfessorSelect = (professor) => {
     setSelectedProfessor(professor);
@@ -45,7 +61,7 @@ function App() {
           </div>
         ) : (
           <ProfessorList
-            professors={professorsData}
+            professors={professors}
             onProfessorSelect={handleProfessorSelect}
           />
         )}
@@ -56,6 +72,8 @@ function App() {
           buildingCoordinates={buildingCoordinates}
         />
       </div>
+
+      {/*<UpdateProfessor />*/}
     </div>
   );
 }
