@@ -17,6 +17,7 @@ function ProfessorList({ professors, onProfessorSelect }) {
 
   return (
     <div className="professor-list">
+
       <input
         type="text"
         placeholder="Search for a professor"

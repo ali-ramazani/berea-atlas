@@ -5,7 +5,6 @@ import ProfessorList from './components/ProfessorList';
 import { supabase } from '../supabaseClient'; // Import the Supabase client
 import buildingCoordinates from '../buildings.json'; // Load JSON for building coordinates
 import 'mapbox-gl/dist/mapbox-gl.css';
-import UpdateProfessor from './components/UpdateProfessor.jsx'
 
 function App() {
   const [professors, setProfessors] = useState([]);
@@ -43,6 +42,17 @@ function App() {
 
         {selectedProfessor ? (
           <div className="professor-details">
+            <div className="professor-photo-container">
+              {selectedProfessor.profile_picture ? (
+                <img
+                  src={selectedProfessor.profile_picture}
+                  alt={`${selectedProfessor.name}'s profile`}
+                  className="professor-photo"
+                />
+              ) : (
+                <div className="placeholder-photo">No Image</div>
+              )}
+            </div>
             <h2>{selectedProfessor.name}</h2>
             <p><strong>Department:</strong> {selectedProfessor.department}</p>
             <p><strong>Office:</strong> {selectedProfessor.office}</p>
@@ -50,13 +60,7 @@ function App() {
             <p><strong>Email:</strong> <a href={`mailto:${selectedProfessor.email}`}>{selectedProfessor.email}</a></p>
             <p><strong>Office Hours:</strong> {selectedProfessor.office_hours}</p>
             <p><strong>Class Schedule:</strong> {selectedProfessor.class_schedule ? selectedProfessor.class_schedule.join(', ') : 'N/A'}</p>
-            {selectedProfessor.profile_picture && (
-              <img
-                src={selectedProfessor.profile_picture}
-                alt={`${selectedProfessor.name}'s profile`}
-                className="professor-photo"
-              />
-            )}
+            <p><strong>Availability:</strong> {selectedProfessor.is_available ? 'Available' : 'Unavailable'}</p>
             <button onClick={handleReset}>Back to List</button>
           </div>
         ) : (
@@ -72,8 +76,6 @@ function App() {
           buildingCoordinates={buildingCoordinates}
         />
       </div>
-
-      {/*<UpdateProfessor />*/}
     </div>
   );
 }
