@@ -19,7 +19,7 @@ const ProfessorList = ({ professors, onProfessorSelect }) => {
     <div className="professor-list">
       <input
         type="text"
-        placeholder="Search for a professor"
+        placeholder="Search for a professor or department"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-bar"

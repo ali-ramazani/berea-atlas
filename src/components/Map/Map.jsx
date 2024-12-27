@@ -23,7 +23,6 @@ const Map = ({ selectedProfessor }) => {
       bearing: -17.6,
       antialias: true, // Smoother edges for 3D rendering
     });
-
     mapRef.current = map;
 
     // Add 3D buildings layer on map load
