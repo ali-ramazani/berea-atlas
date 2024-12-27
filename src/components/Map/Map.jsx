@@ -1,17 +1,19 @@
+// src/components/Map/Map.jsx
 import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
+import PropTypes from 'prop-types';
+import buildingCoordinates from '../../assets/buildings.json';
 
-const apiKey = import.meta.env.VITE_API_KEY;
-
-const Map = ({ selectedProfessor, buildingCoordinates }) => {
-  const mapRef = useRef(null);
+const Map = ({ selectedProfessor }) => {
   const mapContainerRef = useRef(null);
-
+  const mapRef = useRef(null);
   const initialCoordinates = [-84.2888889, 37.5733333];
+  const apiKey = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     mapboxgl.accessToken = apiKey;
 
+    // Initialize the map
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11', // Default style
@@ -19,10 +21,9 @@ const Map = ({ selectedProfessor, buildingCoordinates }) => {
       zoom: 17,
       pitch: 60, // Increased pitch for a 3D perspective
       bearing: -17.6,
-      antialias: true // Smoother edges for 3D rendering
+      antialias: true, // Smoother edges for 3D rendering
     });
 
-    // Store the map reference
     mapRef.current = map;
 
     // Add 3D buildings layer on map load
@@ -57,9 +58,10 @@ const Map = ({ selectedProfessor, buildingCoordinates }) => {
             'fill-extrusion-opacity': 0.6, // Semi-transparent for depth
           },
         },
-        labelLayerId // Place the layer below labels
+        labelLayerId
       );
 
+      // Add sky layer
       map.addLayer({
         id: 'sky',
         type: 'sky',
@@ -75,7 +77,7 @@ const Map = ({ selectedProfessor, buildingCoordinates }) => {
     return () => {
       map.remove();
     };
-  }, []);
+  }, [apiKey]);
 
   useEffect(() => {
     if (mapRef.current) {
@@ -109,9 +111,13 @@ const Map = ({ selectedProfessor, buildingCoordinates }) => {
         });
       }
     }
-  }, [selectedProfessor, buildingCoordinates]);
+  }, [selectedProfessor]);
 
-  return <div ref={mapContainerRef} className="map-container" style={{ width: '100%', height: '100vh' }}></div>;
+  return <div ref={mapContainerRef} className="map-container"></div>;
+};
+
+Map.propTypes = {
+  selectedProfessor: PropTypes.object,
 };
 
 export default Map;
