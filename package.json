@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  
   "dependencies": {
     "@supabase/supabase-js": "^2.47.2",
     "axios": "^1.7.9",
