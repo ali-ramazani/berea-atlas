@@ -1,4 +1,6 @@
 from flask import Flask, request, jsonify, render_template
+from dotenv import load_dotenv
+from backend.logic.buildings import list_buildings, get_building
 
 app = Flask(__name__, template_folder='pages')
 
@@ -9,7 +11,8 @@ def page_not_found(e):
 @app.route('/admin/office/new', methods=['GET', 'POST'])
 def add_office():
     if request.method == 'GET':
-        return render_template('office_form.html'), 200
+        buildings = list_buildings(fields=["building_id", "name", "description", "latitude", "longitude"])
+        return render_template('office_form.html', buildings=buildings), 200
 
     form = request.form
 
@@ -31,7 +34,19 @@ def add_office():
     contact_phone = form.get('contact_phone')
     contact_website = form.get('contact_website')
 
-
+    conn = get_db_connection()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                            INSERT INTO students (name, grade, student_id, email)
+                            VALUES (%s, %s, %s, %s) RETURNING id;
+                            """, (name, grade, student_id, email))
+                new_id = cur.fetchone()['id']  # works now with DictCursor
+    except psycopg2.Error as e:
+        return jsonify({"ok": False, "error": str(e)}), 400
+    finally:
+        conn.close()
 
     return jsonify({"building_name": building_name, "office_name": office_name,
                     "room_number": room_number, "floor": floor,

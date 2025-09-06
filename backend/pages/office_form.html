@@ -13,13 +13,13 @@
     <form method="POST" action="{{ form_action }}">
 
         <!-- Building Information -->
-        <div class="form-section">
-            <h3>Building Information</h3>
-            <label for="building_name">Building Name</label>
-            <select id="building_name" name="building_name">
-                <option>MAC</option>
-                <option>Draper</option>
-            </select>
+    <label for="building_id">Building</label>
+    <select id="building_id" name="building_id" required>
+      <option value="" disabled selected>Select a building</option>
+      {% for b in buildings %}
+        <option value="{{ b.building_id }}">{{ b.name }}</option>
+      {% endfor %}
+    </select>
 
 
         </div>
