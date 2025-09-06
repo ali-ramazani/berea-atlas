@@ -1,0 +1,128 @@
+// styles.scss
+
+// ----------------------
+// Variables
+// ----------------------
+$bg: #f9f9f9;
+$text: #333;
+$muted-text: #444;
+$card-bg: #fff;
+$section-bg: #fafafa;
+$border: #ddd;
+$shadow: rgba(0, 0, 0, 0.1);
+
+$primary: #4caf50;
+$primary-hover: #45a049;
+$neutral: #999;
+$neutral-hover: #777;
+
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 10px;
+
+// ----------------------
+// Mixins
+// ----------------------
+@mixin card($pad: 20px, $radius: $radius-lg) {
+  background-color: $card-bg;
+  padding: $pad;
+  border-radius: $radius;
+  box-shadow: 0 0 8px $shadow;
+}
+
+@mixin button($bg, $hover) {
+  background-color: $bg;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  &:hover { background-color: $hover; }
+}
+
+// ----------------------
+// Base
+// ----------------------
+body {
+  font-family: Arial, sans-serif;
+  background-color: $bg;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
+  color: $text;
+  text-align: center;
+}
+
+form {
+  @include card();
+  margin-top: 15px;
+}
+
+// ----------------------
+// Sections
+// ----------------------
+.form-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  background-color: $section-bg;
+
+  h3 {
+    margin-top: 0;
+    color: $muted-text;
+    font-size: 1.2rem;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+  }
+}
+
+// ----------------------
+// Inputs
+// ----------------------
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: $text;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: $radius-sm;
+  font-size: 1rem;
+}
+
+textarea { resize: vertical; }
+
+// ----------------------
+// Actions
+// ----------------------
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  @include button($primary, $primary-hover);
+
+  &.cancel-btn {
+    background-color: $neutral;
+
+    &:hover {
+      background-color: $neutral-hover;
+    }
+  }
+}

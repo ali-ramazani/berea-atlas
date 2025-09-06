@@ -1,0 +1,85 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
+.form-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+.form-section h3 {
+  margin-top: 0;
+  color: #444;
+  font-size: 1.2rem;
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+button:hover {
+  background-color: #45a049;
+}
+button.cancel-btn {
+  background-color: #999;
+}
+button.cancel-btn:hover {
+  background-color: #777;
+}
+
+/*# sourceMappingURL=office_form.css.map */

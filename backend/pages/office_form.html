@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'Edit' if office else 'Add' }} Office & Contact Info</title>
+    <link rel="stylesheet" href="../static/scss/office_form.css">
+</head>
+<body>
+
+    <h1>{{ 'Edit' if office else 'Add' }} Office, Contact & Building Info</h1>
+
+    <form method="POST" action="{{ form_action }}">
+
+        <!-- Building Information -->
+        <div class="form-section">
+            <h3>Building Information</h3>
+            <label for="building_name">Building Name</label>
+            <select id="building_name" name="building_name">
+                <option>MAC</option>
+                <option>Draper</option>
+            </select>
+
+
+        </div>
+
+        <!-- Office Information -->
+        <div class="form-section">
+            <h3>Office Information</h3>
+            <label for="office_name">Office Name</label>
+            <input type="text" id="office_name" name="office_name" value="{{ office.name if office else '' }}" required>
+
+            <label for="room_number">Room Number</label>
+            <input type="text" id="room_number" name="room_number" value="{{ office.room_number if office else '' }}">
+
+            <label for="floor">Floor</label>
+            <input type="text" id="floor" name="floor" value="{{ office.floor if office else '' }}">
+
+            <label for="office_website">Office Website</label>
+            <input type="url" id="office_website" name="office_website" value="{{ office.website if office else '' }}">
+
+            <label for="office_description">Office Description</label>
+            <textarea id="office_description" name="office_description">{{ office.description if office else '' }}</textarea>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="form-section">
+            <h3>Contact Information</h3>
+            <label for="contact_name">Contact Name</label>
+            <input type="text" id="contact_name" name="contact_name" value="{{ contact.name if contact else '' }}">
+
+            <label for="contact_role">Role</label>
+            <input type="text" id="contact_role" name="contact_role" value="{{ contact.role if contact else '' }}">
+
+            <label for="contact_email">Email</label>
+            <input type="email" id="contact_email" name="contact_email" value="{{ contact.email if contact else '' }}">
+
+            <label for="contact_phone">Phone</label>
+            <input type="text" id="contact_phone" name="contact_phone" value="{{ contact.phone if contact else '' }}">
+
+            <label for="contact_website">Contact Website</label>
+            <input type="url" id="contact_website" name="contact_website" value="{{ contact.website if contact else '' }}">
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Save</button>
+            <a href="{{ cancel_url }}"><button type="button" class="cancel-btn">Cancel</button></a>
+        </div>
+    </form>
+
+</body>
+</html>
