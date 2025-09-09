@@ -1,7 +1,7 @@
 # logic/buildings.py
 from decimal import Decimal
 from typing import Iterable, Optional
-from backend.database import get_db_connection, get_cursor
+from backend.database import get_db_connection
 
 TABLE = "public.building"
 

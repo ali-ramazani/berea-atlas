@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Building</title>
+</head>
+<body>
+    <h1>Add New Building</h1>
+    <form action="/admin/building/new" method="POST">
+        <label for="name">Building Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description" required><br><br>
+
+        <label for="latitude">Latitude:</label><br>
+        <input type="number" id="latitude" name="latitude" step="0.000001" required><br><br>
+
+        <label for="longitude">Longitude:</label><br>
+        <input type="number" id="longitude" name="longitude" step="0.000001" required><br><br>
+
+        <button type="submit">Add Building</button>
+    </form>
+</body>
+</html>
