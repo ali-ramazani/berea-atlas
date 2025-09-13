@@ -1,13 +1,13 @@
 // src/components/Map/Map.jsx
-import React, { useRef, useEffect } from 'react';
+import  { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import PropTypes from 'prop-types';
-import buildingCoordinates from '../../assets/buildings.json';
+import {INITIAL_COORDINATES} from "../../constants/constants.js";
 
-const Map = ({ selectedProfessor }) => {
+const Map = ({ selectedOffice }) => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
-  const initialCoordinates = [-84.2888889, 37.5733333];
+  const initialCoordinates = [INITIAL_COORDINATES.lng, INITIAL_COORDINATES.lat];
   const apiKey = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
@@ -16,10 +16,10 @@ const Map = ({ selectedProfessor }) => {
     // Initialize the map
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11', // Default style
+      style: 'mapbox://styles/mapbox/streets-v11',
       center: initialCoordinates,
       zoom: 17,
-      pitch: 60, // Increased pitch for a 3D perspective
+      pitch: 60, // 3D perspective
       bearing: -17.6,
       antialias: true, // Smoother edges for 3D rendering
     });
@@ -27,7 +27,7 @@ const Map = ({ selectedProfessor }) => {
 
     // Add 3D buildings layer on map load
     map.on('load', () => {
-      // Add a terrain source for realistic 3D elevation
+      // Terrain source for realistic 3D elevation
       map.addSource('mapbox-dem', {
         type: 'raster-dem',
         url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
@@ -52,7 +52,7 @@ const Map = ({ selectedProfessor }) => {
           minzoom: 15,
           paint: {
             'fill-extrusion-color': '#aaa', // Building color
-            'fill-extrusion-height': ['get', 'height'], // Use building height
+            'fill-extrusion-height': ['get', 'height'], // Building height
             'fill-extrusion-base': ['get', 'min_height'], // Base height
             'fill-extrusion-opacity': 0.6, // Semi-transparent for depth
           },
@@ -82,27 +82,25 @@ const Map = ({ selectedProfessor }) => {
     if (mapRef.current) {
       const map = mapRef.current;
 
-      if (selectedProfessor) {
-        const coordinates = buildingCoordinates[selectedProfessor.building];
-
-        if (coordinates && Array.isArray(coordinates) && coordinates.length === 2) {
+       if (selectedOffice?.building_latitude && selectedOffice?.building_longitude) {
+        const lng = parseFloat(selectedOffice.building_longitude);
+        const lat = parseFloat(selectedOffice.building_latitude);
+        if (Number.isFinite(lng) && Number.isFinite(lat)) {
           map.flyTo({
-            center: coordinates,
-            zoom: 20,
+            center: [lng, lat],
+            zoom: 19.5,
             speed: 1.3,
             curve: 1.2,
             easing: (t) => t,
           });
         } else {
-          console.error(
-            `Coordinates not found or invalid for building: ${selectedProfessor.building}`
-          );
+          console.error("Invalid lat/lng on selectedOffice", selectedOffice);
         }
       } else {
         map.flyTo({
           center: initialCoordinates,
           zoom: 17,
-          pitch: 60, // Keep the pitch for 3D
+          pitch: 60, // for 3D
           bearing: -17.6,
           speed: 1.3,
           curve: 1.2,
@@ -110,13 +108,13 @@ const Map = ({ selectedProfessor }) => {
         });
       }
     }
-  }, [selectedProfessor]);
+  }, [selectedOffice]);
 
   return <div ref={mapContainerRef} className="map-container"></div>;
 };
 
 Map.propTypes = {
-  selectedProfessor: PropTypes.object,
+  selectedOffice: PropTypes.object,
 };
 
 export default Map;

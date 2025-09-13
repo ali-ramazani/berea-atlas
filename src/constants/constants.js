@@ -1,0 +1,1 @@
+export const INITIAL_COORDINATES = { lat: 37.5733333, lng: -84.2888889, }; // Boone Tavern
