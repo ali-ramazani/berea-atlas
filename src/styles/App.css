@@ -1,151 +1,117 @@
 /* src/styles/App.css */
 
-/* General Styles */
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* -------- General -------- */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; }
 
-* {
-  box-sizing: border-box;
-}
-
-/* App Container */
+/* -------- App Layout -------- */
 .app-container {
   display: flex;
-  height: 100vh;
+  height: 100vh;           /* full-viewport layout */
 }
 
-/* Navigation Overlay */
 .navigation-overlay {
-  background-color: white;
+  background-color: #fff;
   width: 300px;
   overflow-y: auto;
+  border-right: 1px solid #e5e7eb;
 }
 
 @media (max-width: 767px) {
-  .app-container {
-    flex-direction: column;
-  }
-
+  .app-container { flex-direction: column; }
   .navigation-overlay {
     width: 100%;
     max-height: 30vh;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
   }
 }
 
-/* Map Container */
+/* -------- Map -------- */
 .map-container {
   flex: 1;
   position: relative;
+  height: 100%;
+  min-height: 300px;       /* keeps map visible on short viewports */
 }
 
-.map-container > div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
+/* Help Mapbox fill the container */
+.mapboxgl-map, .mapboxgl-canvas, .mapboxgl-canvas-container {
   width: 100%;
+  height: 100%;
 }
 
-/* Professor List */
-.professor-list {
-  padding: 16px;
+.mapboxgl-ctrl-attrib {
+  bottom: 0;
+  right: 0;
+  top: auto;
+  left: auto;
 }
 
-.professor-list input {
+.office-list { padding: 16px; }
+
+.search-bar {
   width: 100%;
   padding: 8px;
   margin-bottom: 12px;
-  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
 }
 
-.professor-list ul {
+.list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.professor-list li {
-  padding: 8px;
+.list-item {
+  padding: 10px 8px;
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
 }
 
-.professor-list li:hover {
-  background-color: #f0f0f0;
+.list-item:hover { background-color: #f7f7f7; }
+.list-item:last-child { border-bottom: none; }
+
+.no-results {
+  color: #6b7280;
+  padding: 8px;
+  font-size: 14px;
 }
 
-.professor-list h3 {
-  margin-top: 16px;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.professor-list li:last-child {
-  border-bottom: none;
-}
-
-/* Professor Details */
-.professor-details {
+.office-details {
   padding: 16px;
-  text-align: center;
 }
 
-.professor-details h2 {
-  margin-top: 16px;
-  font-size: 24px;
-  font-weight: bold;
+.office-details h2 {
+  margin: 12px 0 4px;
+  font-size: 22px;
+  font-weight: 700;
 }
 
-.professor-details p {
-  margin: 8px 0;
-  font-size: 16px;
-  color: #555;
+.office-details p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #374151;
 }
 
-.professor-details button {
-  margin-top: 16px;
-  padding: 8px 16px;
-  background-color: #007bff;
+.office-details a { color: #2563eb; text-decoration: none; }
+.office-details a:hover { text-decoration: underline; }
+
+.office-details .back-button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background-color: #2563eb;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
-
-.professor-details button:hover {
-  background-color: #0056b3;
+.office-details .back-button:hover {
+  background-color: #1e40af;
 }
 
-/* Profile Picture */
-.professor-photo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.professor-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ddd;
-}
-
-.placeholder-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: #f0f0f0;
-  color: #888;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  border: 3px solid #ddd;
-}
-
-/* App Header */
+/* -------- App Header -------- */
 .app-header {
   text-align: center;
   padding: 20px 0;
@@ -159,16 +125,111 @@ body {
   color: #2c3e50;
   letter-spacing: 2px;
   margin: 0;
-}
-
-.app-title:hover {
-  color: #3498db;
   transition: color 0.3s ease;
 }
+.app-title:hover { color: #3498db; }
 
-.mapboxgl-ctrl-attrib {
-  bottom: 0;
-  right: 0;
-  top: auto;
-  left: auto;
+.professor-list,
+.professor-details {  }
+
+
+/* Card container */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
+
+/* Header */
+.office-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.office-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.btn-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: #2563eb;
+}
+.btn-link:hover { text-decoration: underline; }
+
+/* Meta grid */
+.meta-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 8px 16px;
+  margin: 12px 0 8px;
+}
+.meta-row { display: contents; }
+.label {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+.value {
+  color: #111827;
+  font-size: 15px;
+}
+
+/* Sections */
+.section { margin-top: 16px; }
+.section-title {
+  font-size: 18px;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.muted { color: #374151; line-height: 1.5; }
+
+/* Contacts */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.contact-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+.contact-item:last-child { border-bottom: none; }
+
+.contact-name { margin-bottom: 6px; }
+.role { color: #6b7280; }
+
+.contact-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+  color: #111827;
+  text-decoration: none;
+}
+.chip:hover { background: #f9fafb; }
+
+.back-button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.back-button:hover { background-color: #1e40af; }
