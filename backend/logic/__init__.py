@@ -1,1 +1,1 @@
-from .buildings import list_buildings
+from .buildings import get_buildings
