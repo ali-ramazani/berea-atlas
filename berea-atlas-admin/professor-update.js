@@ -31,7 +31,7 @@ authenticateBtn.addEventListener('click', async () => {
     return;
   }
 
-  // Populate form with professor data
+  // Populate form with professor data_hydration
   messageDiv.textContent = '';
   updateSection.style.display = 'block';
   document.getElementById('name').value = data.name || '';
@@ -54,7 +54,7 @@ updateForm.addEventListener('submit', async (e) => {
     office_hours: document.getElementById('office_hours').value,
   };
 
-  // Update data in Supabase
+  // Update data_hydration in Supabase
   const { error } = await supabase
     .from('faculty')
     .update(updatedData)
