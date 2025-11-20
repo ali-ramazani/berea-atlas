@@ -12,7 +12,7 @@ contact_uuids = [uuid.uuid4() for _ in range(15)]
 
 buildings = [
     {"building_id": building_uuids[0], "name": "CMIT Building", "address": "101 Chestnut Street", "description": "", "latitude": 37.57292195128939, "longitude": -84.29074074279187, "accessibility_info": ""},
-    {"building_id": building_uuids[1], "name": "Arts Center", "address": "102 Chestnut Street", "description": "", "latitude": 37.5733333, "longitude": -84.2888889, "accessibility_info": ""},
+    {"building_id": building_uuids[1], "name": "Arts Center", "address": "102 Chesssstnut Street", "description": "", "latitude": 37.5733333, "longitude": -84.2888889, "accessibility_info": ""},
     {"building_id": building_uuids[2], "name": "Draper Hall", "address": "103 Chestnut Street", "description": "", "latitude": 37.573027141828966, "longitude": -84.29228072169963, "accessibility_info": ""},
     {"building_id": building_uuids[3], "name": "Natural Sciences Building", "address": "104 Chesntut Street", "description": "", "latitude": 37.57483224024733, "longitude": -84.28918852406122, "accessibility_info": ""},
     {"building_id": building_uuids[4], "name": "Danforth Industrial Arts Building", "address": "105 Chestnut Street", "description": "", "latitude": 37.57395248203487, "longitude": -84.28921936269758, "accessibility_info": ""},

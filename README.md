@@ -4,8 +4,6 @@ A campus building + office directory with a Python backend (Flask + Peewee + Pos
 
 ---
 
-
-
 ## 🧱 Architecture 
 
 ```
