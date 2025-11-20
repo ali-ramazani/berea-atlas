@@ -1,5 +1,6 @@
+import datetime
 import uuid
-from peewee import Model, CharField, TextField, UUIDField, ForeignKeyField, DoubleField
+from peewee import Model, CharField, TextField, UUIDField, ForeignKeyField, DoubleField, AutoField, BooleanField, IntegerField, DateTimeField
 from backend.database.db_config import ps_db
 
 class BaseModel(Model):
@@ -56,3 +57,14 @@ class Office(BaseModel):
     class Meta:
         table_name = "office"
 
+
+class Admin(BaseModel):
+    id            = AutoField()
+    email         = CharField(max_length=150, unique=True, null=False)
+    password_hash = TextField(null=False)   # store bcrypt
+    is_active     = BooleanField(default=True)
+    created_by    = IntegerField(null=True)  # admin.id of promoter
+    created_at    = DateTimeField(default=datetime.datetime.now(datetime.UTC))
+
+    class Meta:
+        table_name = "admin"

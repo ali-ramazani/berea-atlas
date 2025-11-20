@@ -1,6 +1,6 @@
 import uuid
 from backend.database.db_config import ps_db
-from backend.models.models import Building, Contact, Office
+from backend.models.models import Building, Contact, Office, Admin
 from peewee import IntegrityError
 from backend.Logger import get_logger
 
@@ -61,6 +61,28 @@ offices = [
     {"office_id": office_uuids[2], "building_id": building_uuids[12], "contact_id": contact_uuids[2], "name": "Student Accounts", "room_number": "101", "floor": "1", "description": "Serving student accounts", "website": "www.studentacounts.com"},
 ]
 
+SUPERADMIN_EMAIL = "admin@berea.edu"
+SUPERADMIN_PASSWORD = "admin"
+
+def seed_super_admin():
+    existing = Admin.get_or_none(Admin.email == SUPERADMIN_EMAIL.lower())
+    if existing:
+        logger.info("ℹ️ Super admin already exists.")
+        return existing
+
+    try:
+        admin = Admin.create(
+            email=SUPERADMIN_EMAIL.lower(),
+            password_hash=SUPERADMIN_PASSWORD,  # ✅ plain text for now
+            is_active=True,
+            created_by=None
+        )
+        logger.info(f"✅ Seeded super admin: {admin.email}")
+        return admin
+    except IntegrityError as e:
+        logger.error(f"⚠️ Could not insert super admin: {e}")
+
+
 logger = get_logger()
 
 def main():
@@ -72,6 +94,7 @@ def main():
         logger.info(f"✅ Inserted {len(contacts)} contacts.")
         Office.insert_many(offices).execute()
         logger.info(f"✅ Inserted {len(offices)} offices.")
+        seed_super_admin()
     except IntegrityError as e:
         logger.error(f"⚠️ Insert failed: {e}")
     finally:

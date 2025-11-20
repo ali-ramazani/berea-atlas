@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title or "Berea Atlas Admin" }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="bg-white border-b sticky top-0 z-10">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="font-semibold">Berea Atlas</a>
+      <nav class="flex items-center gap-4">
+        <a href="/admin/home" class="text-sm hover:underline">Admin Home</a>
+        <a href="/admin/building/new" class="text-sm hover:underline">New Building</a>
+        <a href="/api/offices/register" class="text-sm hover:underline">New Office</a>
+        <span id="whoami" class="text-xs text-slate-500"></span>
+        <button id="logoutBtn" class="hidden text-sm text-red-600 hover:underline">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script>
+    // Show current user (if logged in) + enable logout button
+    async function refreshWhoAmI() {
+      try {
+        const res = await fetch('/auth/me');
+        if (res.ok) {
+          const data = await res.json();
+          const who = document.getElementById('whoami');
+          const out = document.getElementById('logoutBtn');
+          who.textContent = `Signed in as ${data.email}`;
+          out.classList.remove('hidden');
+          out.onclick = async () => {
+            await fetch('/auth/logout', { method: 'POST' });
+            location.href = '/login';
+          };
+        }
+      } catch (e) { /* not logged in */ }
+    }
+    refreshWhoAmI();
+  </script>
+</body>
+</html>

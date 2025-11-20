@@ -1,2 +1,2 @@
-from .models import Office, Building, Contact
-__all__ = ["Office", "Building", "Contact"]
+from .models import Office, Building, Contact, Admin
+__all__ = ["Office", "Building", "Contact", "Admin"]

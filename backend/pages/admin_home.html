@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-6">Admin Home</h1>
+
+<div class="grid gap-4 md:grid-cols-2">
+  <a href="/admin/building/new" class="block bg-white border rounded-xl p-5 hover:shadow">
+    <h2 class="font-semibold">Add a Building</h2>
+    <p class="text-sm text-slate-600">Create a new building entry.</p>
+  </a>
+  <a href="/api/offices/register" class="block bg-white border rounded-xl p-5 hover:shadow">
+    <h2 class="font-semibold">Add an Office</h2>
+    <p class="text-sm text-slate-600">Create a new office and optional contact.</p>
+  </a>
+</div>
+{% endblock %}
