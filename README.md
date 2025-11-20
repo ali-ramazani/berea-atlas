@@ -4,13 +4,7 @@ A campus building + office directory with a Python backend (Flask + Peewee + Pos
 
 ---
 
-## 👋 Why contribute?
 
-* Real-world stack (Flask, Peewee ORM, Postgres, Vite)
-* Clear data model and seed/hydration scripts
-* Plenty of bite-sized issues for first-time contributors
-
----
 
 ## 🧱 Architecture 
 
