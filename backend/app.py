@@ -15,7 +15,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__, template_folder='pages', static_folder='backend/static')
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-only-change-me")  # replace in .env
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-from-env")
 
 # CORS (keep permissive for now; restrict later)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
