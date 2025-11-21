@@ -36,7 +36,7 @@ function UpdateProfessor() {
       setAuthenticated(true);
       setProfessor(data);
 
-      // Pre-fill form with existing data
+      // Pre-fill form with existing data_hydration
       setUpdatedData({
         name: data.name || '',
         office: data.office || '',
